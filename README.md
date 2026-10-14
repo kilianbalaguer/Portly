@@ -1,43 +1,109 @@
-<h1 align="center">Portly</h1>
+<div align="center">
 
-<p align="center">
-  <b>Every dev server on your Mac, one keystroke away.</b><br>
-  A tiny menu bar app that finds your running dev servers and lets you open, stop, restart and tail them.
-</p>
+<img src="docs/images/logo.png" width="96" alt="Portly app icon">
 
-<p align="center">
-  <img src="docs/images/servers.png" width="360" alt="Portly listing three dev servers: storefront on 3000 (Next.js), dashboard on 5173 (Vite) and api on 8000 (Django)">
-</p>
+# Portly
 
----
+**Every dev server on your Mac, one keystroke away.**
 
-You start `npm run dev` in one terminal, a Django API in another, a Vite app somewhere else. An hour later: *what's on port 3000? Which terminal was that? Why is 5173 already in use?*
+A tiny, native menu bar app that finds the dev servers running on your Mac<br>
+and lets you open, stop, restart and tail them, without hunting through terminals.
 
-Portly sits in your menu bar and answers that. It shows every server you have running, with its project and framework, and gives you one-click actions for each.
+[![macOS 14+](https://img.shields.io/badge/macOS-14%2B-111?style=flat-square&logo=apple&logoColor=white)](#install)
+[![Swift 6](https://img.shields.io/badge/Swift-6-F05138?style=flat-square&logo=swift&logoColor=white)](#how-it-works)
+[![Zero dependencies](https://img.shields.io/badge/dependencies-0-8b9cff?style=flat-square)](#how-it-works)
+[![MIT License](https://img.shields.io/badge/license-MIT-444?style=flat-square)](LICENSE)
+
+[Install](#install) · [Features](#features) · [Keyboard](#keyboard) · [FAQ](#faq) · [How it works](#how-it-works)
+
+<br>
+
+<img src="docs/images/hero.png" alt="Portly showing storefront (Next.js) on port 3000, dashboard (Vite) on 5173 and api (Django) on 8000, with captured logs behind">
+
+</div>
+
+<br>
+
+## Why
+
+You start `npm run dev` in one tab, a Django API in another, a Vite app somewhere else. An hour later:
+
+> *What's on port 3000? Which terminal was that? Why is 5173 already in use?*
+
+Portly lives in your menu bar and answers that at a glance. Press <kbd>⌃</kbd><kbd>⌥</kbd><kbd>L</kbd>, type a few letters, hit <kbd>↩</kbd>, and your app is open in the browser.
+
+<div align="center">
+  <img src="docs/images/demo.gif" width="520" alt="Typing 'store' filters to the storefront server; restarting it shows Stopping…, then Starting…, then its captured logs">
+  <br>
+  <sub>Search, restart, and live logs: rendered from the real app.</sub>
+</div>
 
 ## Features
 
-- **Finds everything that's listening.** Port, project folder, framework, memory, uptime and pid for each server.
-- **Knows your stack.** Next.js, Vite, Nuxt, Remix, Astro, SvelteKit, Angular, Express, NestJS, Django, FastAPI, Flask, Rails, Laravel, Phoenix and more, detected from the command line or the project's dependencies.
-- **Ignores the noise.** Only dev servers by default. System and app listeners are one click away under **All**.
-- **One-click actions.** Open in browser, copy URL, stop (a graceful SIGTERM first, then SIGKILL after 3 s if it hangs) and restart.
-- **Smart restarts.** Relaunches the same command in the same folder through your login shell, so nvm, asdf, pyenv and friends just work. It restarts `npm run dev`, not the node process it happened to spawn.
-- **Live logs.** Servers that Portly starts or restarts have their output captured: the last 5,000 lines, with follow, filter and copy.
-- **Keyboard first.** <kbd>⌃</kbd><kbd>⌥</kbd><kbd>L</kbd> opens Portly from anywhere with search focused. Type a port, project or framework, then press <kbd>↩</kbd> to open it in your browser. You can change the shortcut.
-- **Feels at home.** Designed for dark mode first, works in light mode, respects Reduce Motion, and has full VoiceOver labels.
-- **Private.** No network access, no analytics, no accounts. Everything stays on your Mac.
+<table>
+<tr>
+<td width="50%" valign="top">
 
-<p align="center">
-  <img src="docs/images/logs.png" width="300" alt="Captured logs for a restarted Next.js server">
-  &nbsp;&nbsp;
-  <img src="docs/images/search.png" width="360" alt="Searching for api, with the row's actions showing">
-</p>
+### 🔎 Sees everything
+Every listening server with its **port, project, framework, memory, uptime and pid**. System noise is hidden. Flip **All** to see every listener.
+
+</td>
+<td width="50%" valign="top">
+
+### 🧠 Knows your stack
+Detects **Next.js, Vite, Nuxt, Remix, Astro, SvelteKit, Angular, Express, NestJS, Django, FastAPI, Flask, Rails, Laravel, Phoenix** and more, from the command line or the project's dependencies.
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+### ⚡️ One click
+**Open in browser**, **copy URL**, **stop** (a graceful SIGTERM, then SIGKILL after 3 s if it hangs) and **restart**, each with clear feedback in the row.
+
+</td>
+<td valign="top">
+
+### 🔁 Restarts done right
+Re-runs the original command, in the original folder, through your login shell, so **nvm, asdf and pyenv just work**. It restarts `npm run dev`, not the node child it spawned.
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+### 📜 Live logs
+Servers started by Portly get their output captured: the **last 5,000 lines** with follow-tail, filter and copy.
+
+</td>
+<td valign="top">
+
+### ⌨️ Keyboard first
+A global hotkey opens Portly with search focused. Filter by port, project or framework, then <kbd>↩</kbd> to open. You can change the shortcut.
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+### 🌙 Feels native
+SwiftUI, designed dark-first with a calm look. Respects light mode, **Reduce Motion** and **VoiceOver**.
+
+</td>
+<td valign="top">
+
+### 🔒 Private by design
+**No network, no analytics, no accounts.** No Accessibility or Screen Recording permission needed. Nothing leaves your Mac.
+
+</td>
+</tr>
+</table>
 
 ## Install
 
-Requires **macOS 14 Sonoma or later**.
+Requires **macOS 14 Sonoma or later** and runs natively on Apple Silicon and Intel.
 
-Signed and notarized downloads will be on the [Releases](../../releases) page soon. Until then, build it yourself:
+> Signed, notarized downloads are coming to [**Releases**](../../releases). Until then, it builds in about a minute:
 
 ```sh
 git clone https://github.com/kilianbalaguer/Portly.git
@@ -46,42 +112,87 @@ cd Portly
 open build/DerivedData/Build/Products/Release/Portly.app
 ```
 
-Or open `Portly.xcodeproj` in Xcode 16+ and press Run. There are no dependencies to install: Portly uses Apple frameworks only.
+Or open `Portly.xcodeproj` in Xcode 16+ and press <kbd>⌘</kbd><kbd>R</kbd>. There's nothing else to install: Portly uses Apple frameworks only.
 
-## Using Portly
+Want it at every login? Open Portly's **Settings** (<kbd>⌘</kbd><kbd>,</kbd> from the menu) and turn on **Launch at login**.
 
-| | |
+## Keyboard
+
+| Keys | Action |
 |---|---|
-| <kbd>⌃</kbd><kbd>⌥</kbd><kbd>L</kbd> | Open Portly from anywhere (configurable in Settings) |
-| Type | Filter by port, project, framework or process name |
+| <kbd>⌃</kbd><kbd>⌥</kbd><kbd>L</kbd> | Open Portly from anywhere (configurable) |
+| *type* | Filter by port, project, framework or process |
 | <kbd>↑</kbd> <kbd>↓</kbd> | Move through the list |
 | <kbd>↩</kbd> | Open the selected server in your browser |
-| <kbd>esc</kbd> | Close (or go back from the log view) |
-| Double-click a row | Open in browser |
-| Right-click a row | All actions |
+| <kbd>esc</kbd> | Close, or go back from the log view |
+| <kbd>⌘</kbd><kbd>,</kbd> | Settings |
+| double-click | Open in browser |
+| right-click | All actions for that server |
 
-**About logs.** macOS doesn't let one app read another app's terminal output. So Portly can only show logs for servers it started. For a server you started in a terminal, the log view offers **Restart in Portly to capture logs**.
+## FAQ
 
-**About restarts.** Portly reruns the original command in the original folder through your login shell, so anything in your shell profile is restored. Environment variables you typed by hand into that one terminal session (`export API_KEY=…`) can't be recovered. Portly tells you this before restarting.
+<details>
+<summary><b>Why can't I see logs for a server I started in my terminal?</b></summary>
+<br>
+macOS doesn't let one app read another app's terminal output, and that's a good thing. Portly captures logs for servers it starts. For anything else, the log view offers <b>Restart in Portly to capture logs</b>, and from then on you get full output.
+</details>
+
+<details>
+<summary><b>Will a restart lose my environment variables?</b></summary>
+<br>
+Anything in your shell profile (<code>.zprofile</code>, <code>.zshrc</code> PATH setup, version managers) is restored, and Portly also puts the exact runtime that was running first on PATH. What <i>can't</i> be recovered is a variable you typed by hand into that one terminal session (<code>export API_KEY=…</code>). Portly tells you this before restarting. Keep secrets in a <code>.env</code> file and restarts are lossless.
+</details>
+
+<details>
+<summary><b>What does "Stop" actually do?</b></summary>
+<br>
+It sends SIGTERM so your server can shut down cleanly, waits up to 3 seconds, then sends SIGKILL if it's still alive. The row shows <i>Stopping…</i> and then <i>Force quitting…</i> so you know what's happening. It stops the whole job (e.g. <code>npm</code> and its <code>node</code> child) but never your shell or terminal.
+</details>
+
+<details>
+<summary><b>Does it need any permissions?</b></summary>
+<br>
+No. The global hotkey uses Carbon's <code>RegisterEventHotKey</code>, which needs no Accessibility permission. Process information comes from <code>lsof</code> and the kernel's public process APIs. Portly can only see and control processes that belong to you.
+</details>
+
+<details>
+<summary><b>Why isn't it on the Mac App Store?</b></summary>
+<br>
+App Store apps must be sandboxed, and a sandboxed app can't inspect other processes, which is Portly's entire job. It's distributed signed and notarized with Developer ID instead.
+</details>
+
+<details>
+<summary><b>What about Docker?</b></summary>
+<br>
+Ports published by Docker are opened by Docker Desktop's own process, so they appear under <b>All</b> rather than as dev servers. Portly doesn't map them to individual containers.
+</details>
+
+<details>
+<summary><b>Will it slow my Mac down?</b></summary>
+<br>
+No. It checks every 2 seconds only while its menu is open, and every 10 seconds otherwise (just enough to keep the menu bar count right). Per-process details are cached, and the UI only redraws when something actually changed.
+</details>
 
 ## How it works
 
-Portly polls `lsof` for TCP listeners every 2 seconds while its menu is open, and every 10 seconds otherwise so the menu bar count stays right. For each process it reads the working directory, arguments, memory and start time straight from the kernel (libproc / sysctl). It then walks up to the nearest `package.json`, `.git`, `pyproject.toml`, `Gemfile`, `Cargo.toml` or `go.mod` to find the project.
-
-A dev server is often a small family of processes, e.g. `npm run dev` → `node`, where only the last one holds the port. Stop and restart act on the whole family (up to, but not including, your shell), so nothing is left behind. Restarted servers write their output to a file that Portly tails, which means they keep running normally if you quit Portly.
+1. **Find listeners.** `lsof -iTCP -sTCP:LISTEN` lists every process with an open TCP port.
+2. **Describe them.** Working directory, arguments, memory and start time come straight from the kernel (`libproc`, `sysctl`). No `ps` parsing, and arguments with spaces survive intact.
+3. **Find the project.** Portly walks up to the nearest `package.json`, `.git`, `pyproject.toml`, `Gemfile`, `Cargo.toml` or `go.mod` and reads its dependencies to name the framework.
+4. **Act on the whole job.** A dev server is often a family (`npm run dev` → `node`) where only the last process holds the port. Stop and restart act on that family, up to but never including your shell.
+5. **Own the output.** Restarted servers run in their own session and write to a file that Portly tails, so they keep running normally even if you quit Portly.
 
 ```
 Portly/
-  App/       app entry, menu bar wiring, global-hotkey bridge
-  Shell/     a small, testable wrapper around Process
-  Data/      lsof parsing, process inspection, project + framework detection, the polling actor
-  Control/   stopping, relaunching through the login shell, log capture
-  State/     observable app state and settings
-  Hotkey/    Carbon RegisterEventHotKey (no Accessibility permission needed)
-  UI/        SwiftUI views, plus an NSTextView-backed log view
+├─ App/       entry point, menu bar wiring, global-hotkey bridge
+├─ Shell/     small, testable wrapper around Process
+├─ Data/      lsof parsing, process inspection, project + framework detection, polling actor
+├─ Control/   stop / relaunch through the login shell, log capture
+├─ State/     observable app state and settings
+├─ Hotkey/    Carbon RegisterEventHotKey + shortcut recorder
+└─ UI/        SwiftUI views, plus an NSTextView-backed log view
 ```
 
-Built with SwiftUI (AppKit only where SwiftUI can't do the job), Swift 6 strict concurrency, and zero third-party packages.
+SwiftUI (AppKit only where SwiftUI can't do the job), Swift 6 strict concurrency, actors for polling and process control, and **zero third-party packages**.
 
 ## Development
 
@@ -91,17 +202,32 @@ Built with SwiftUI (AppKit only where SwiftUI can't do the job), Swift 6 strict 
 ./build.sh test     # unit + integration tests
 ```
 
-The tests start real processes: a Python HTTP server, an `npm run dev` launched the way Restart does it, a process that ignores SIGTERM, and a command that crashes on launch. They check detection, the npm→node job handling, log capture, the SIGKILL escalation and exit-code reporting.
+The test suite starts **real processes**: a Python HTTP server, an `npm run dev` launched exactly the way Restart does it, a process that ignores SIGTERM, and a command that crashes on launch. It checks detection, job handling, log capture, the SIGKILL escalation and exit codes.
 
-> **Intel Macs with Xcode 26.5:** the new Swift driver can crash (`SIGILL`), and Xcode then reports *"Unable to discover swiftc command line tool info"*. `build.sh` handles this automatically. For the Xcode app, run `launchctl setenv SWIFT_USE_OLD_DRIVER 1` and restart Xcode.
+<details>
+<summary>Intel Mac + Xcode 26.5: "Unable to discover swiftc command line tool info"</summary>
+<br>
+Xcode 26.5's new Swift driver can crash (<code>SIGILL</code>) on some Intel CPUs. <code>build.sh</code> works around it automatically. For the Xcode app, run <code>launchctl setenv SWIFT_USE_OLD_DRIVER 1</code>, then quit and reopen Xcode.
+</details>
 
-Debug builds accept a few launch arguments for design work: `-PortlyOpenPopover`, `-PortlyAppearance dark|light` and `-PortlyGallery <dir>`, which renders the main screens to PNGs. They're documented in `Portly/App/DebugSupport.swift` and compiled out of Release builds.
+<details>
+<summary>Regenerating the README images</summary>
+<br>
+The images above are rendered by the app itself (Debug builds only). Start a few dev servers, then:
+
+```sh
+open build/DerivedData/Build/Products/Debug/Portly.app --args \
+  -PortlyOpenPopover -PortlyReadmeAssets 3000 docs/images
+```
+
+This writes <code>logo.png</code>, <code>hero.png</code> and <code>demo.gif</code>. It really restarts the server on port 3000 to record the demo. See <code>Portly/App/ReadmeAssets.swift</code>.
+</details>
 
 Shipping a signed, notarized build: see [docs/RELEASING.md](docs/RELEASING.md).
 
 ## Contributing
 
-Issues and pull requests are welcome, especially framework detection for stacks Portly doesn't recognise yet. That lives in `Portly/Data/ProjectDetector.swift` and comes with tests in `PortlyTests/ParsingTests.swift`. Please keep it dependency-free.
+Issues and pull requests are welcome. Framework detection for stacks Portly doesn't recognise yet is the easiest place to start: it lives in [`Portly/Data/ProjectDetector.swift`](Portly/Data/ProjectDetector.swift), with tests in [`PortlyTests/ParsingTests.swift`](PortlyTests/ParsingTests.swift). Please keep Portly dependency-free.
 
 ## License
 

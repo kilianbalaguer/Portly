@@ -6,6 +6,7 @@ import SwiftUI
 ///   -PortlyOpenPopover               open the popover via the hotkey code path
 ///   -PortlyAppearance dark|light     force an appearance
 ///   -PortlyGallery <dir>             render static states to PNGs
+///   -PortlyReadmeAssets <port> <dir>     generate the README images (see ReadmeAssets)
 ///   -PortlyRestartScenario <port> <dir>  really restart the server on <port>, snapshotting each stage
 ///   -PortlySnapshot <path>           render the popover to a PNG
 @MainActor
@@ -21,6 +22,9 @@ enum DebugSupport {
                 delegate.popover.hotKeyPressed()
                 if let index = args.firstIndex(of: "-PortlyGallery"), index + 1 < args.count {
                     await DebugSnapshot.runGallery(delegate, directory: args[index + 1])
+                }
+                if let index = args.firstIndex(of: "-PortlyReadmeAssets"), index + 2 < args.count, let port = Int(args[index + 1]) {
+                    await ReadmeAssets.run(delegate, restartPort: port, directory: args[index + 2])
                 }
                 if let index = args.firstIndex(of: "-PortlyRestartScenario"), index + 2 < args.count, let port = Int(args[index + 1]) {
                     await DebugSnapshot.runRestartScenario(delegate, port: port, directory: args[index + 2])
