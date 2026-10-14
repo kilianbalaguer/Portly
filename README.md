@@ -40,7 +40,7 @@ Requires **macOS 14 Sonoma or later**.
 Signed and notarized downloads will be on the [Releases](../../releases) page soon. Until then, build it yourself:
 
 ```sh
-git clone https://github.com/<you>/Portly.git
+git clone https://github.com/kilianbalaguer/Portly.git
 cd Portly
 ./build.sh Release
 open build/DerivedData/Build/Products/Release/Portly.app
