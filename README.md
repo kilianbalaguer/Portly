@@ -122,7 +122,7 @@ Want it at every login? Open Portly's **Settings** (<kbd>⌘</kbd><kbd>,</kbd> f
 git clone https://github.com/kilianbalaguer/Portly.git
 cd Portly
 ./build.sh Release
-open build/DerivedData/Build/Products/Release/Portly.app
+open build/DerivedData.noindex/Build/Products/Release/Portly.app
 ```
 
 Or open `Portly.xcodeproj` in Xcode 16+ and press <kbd>⌘</kbd><kbd>R</kbd>. There's nothing else to install: Portly uses Apple frameworks only.
@@ -227,7 +227,7 @@ Xcode 26.5's new Swift driver can crash (<code>SIGILL</code>) on some Intel CPUs
 The images above are rendered by the app itself (Debug builds only). Start a few dev servers, then:
 
 ```sh
-open build/DerivedData/Build/Products/Debug/Portly.app --args \
+open build/DerivedData.noindex/Build/Products/Debug/Portly.app --args \
   -PortlyOpenPopover -PortlyReadmeAssets 3000 docs/images
 ```
 

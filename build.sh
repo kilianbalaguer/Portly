@@ -11,12 +11,12 @@ if [[ "$(uname -m)" == "x86_64" ]]; then export SWIFT_USE_OLD_DRIVER=1; fi
 
 log=$(mktemp -t portly-build)
 if [[ "${1:-}" == "test" ]]; then
-  xcodebuild -project Portly.xcodeproj -scheme Portly -derivedDataPath build/DerivedData test > "$log" 2>&1
+  xcodebuild -project Portly.xcodeproj -scheme Portly -derivedDataPath build/DerivedData.noindex test > "$log" 2>&1
   code=$?
   grep -E "error:|failed|Executed .* tests|TEST (SUCCEEDED|FAILED)" "$log" | grep -v "legacy driver" | tail -20
 else
   xcodebuild -project Portly.xcodeproj -scheme Portly -configuration "${1:-Debug}" \
-    -derivedDataPath build/DerivedData build > "$log" 2>&1
+    -derivedDataPath build/DerivedData.noindex build > "$log" 2>&1
   code=$?
   grep -E "error:|warning:|BUILD (SUCCEEDED|FAILED)" "$log" | grep -v -e "legacy driver" -e "AppIntents" | sort -u
 fi
