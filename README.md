@@ -103,7 +103,20 @@ SwiftUI, designed dark-first with a calm look. Respects light mode, **Reduce Mot
 
 Requires **macOS 14 Sonoma or later** and runs natively on Apple Silicon and Intel.
 
-> Signed, notarized downloads are coming to [**Releases**](../../releases). Until then, it builds in about a minute:
+1. Download **[Portly.dmg from the latest release](https://github.com/kilianbalaguer/Portly/releases/latest)**.
+2. Open it and drag **Portly** into **Applications**.
+3. Launch Portly. Its icon appears in your menu bar; press <kbd>⌃</kbd><kbd>⌥</kbd><kbd>L</kbd> anytime.
+
+> [!NOTE]
+> Portly isn't notarized by Apple yet, so the first launch shows a warning. Open **System Settings → Privacy & Security**, scroll down and click **Open Anyway**. Or, in Terminal:
+> ```sh
+> xattr -dr com.apple.quarantine /Applications/Portly.app
+> ```
+> You only need to do this once.
+
+Want it at every login? Open Portly's **Settings** (<kbd>⌘</kbd><kbd>,</kbd> from the menu) and turn on **Launch at login**.
+
+### Build from source
 
 ```sh
 git clone https://github.com/kilianbalaguer/Portly.git
@@ -113,8 +126,6 @@ open build/DerivedData/Build/Products/Release/Portly.app
 ```
 
 Or open `Portly.xcodeproj` in Xcode 16+ and press <kbd>⌘</kbd><kbd>R</kbd>. There's nothing else to install: Portly uses Apple frameworks only.
-
-Want it at every login? Open Portly's **Settings** (<kbd>⌘</kbd><kbd>,</kbd> from the menu) and turn on **Launch at login**.
 
 ## Keyboard
 
