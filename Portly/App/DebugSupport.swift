@@ -6,6 +6,7 @@ import SwiftUI
 ///   -PortlyOpenPopover               open the popover via the hotkey code path
 ///   -PortlyAppearance dark|light     force an appearance
 ///   -PortlyGallery <dir>             render static states to PNGs
+///   -PortlyAppIcon <dir>                 render the 1024px app icon
 ///   -PortlyReadmeAssets <port> <dir>     generate the README images (see ReadmeAssets)
 ///   -PortlyRestartScenario <port> <dir>  really restart the server on <port>, snapshotting each stage
 ///   -PortlySnapshot <path>           render the popover to a PNG
@@ -15,6 +16,9 @@ enum DebugSupport {
         let args = CommandLine.arguments
         if let index = args.firstIndex(of: "-PortlyAppearance"), index + 1 < args.count {
             NSApp.appearance = NSAppearance(named: args[index + 1] == "dark" ? .darkAqua : .aqua)
+        }
+        if let index = args.firstIndex(of: "-PortlyAppIcon"), index + 1 < args.count {
+            ReadmeAssets.writeAppIcon(delegate, directory: args[index + 1])
         }
         if args.contains("-PortlyOpenPopover") {
             Task {

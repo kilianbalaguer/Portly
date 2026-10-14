@@ -197,6 +197,24 @@ private struct Hero: View {
     }
 }
 
+/// The macOS app icon: the logo inset on a 1024 grid (824pt body, like Apple's template) with a soft shadow.
+struct AppIconArt: View {
+    var body: some View {
+        Logo(size: 412)
+            .shadow(color: .black.opacity(0.35), radius: 10, y: 6)
+            .frame(width: 512, height: 512)
+    }
+}
+
+extension ReadmeAssets {
+    /// Writes icon_1024.png (a 512pt view rendered at 2x).
+    static func writeAppIcon(_ delegate: AppDelegate, directory: String) {
+        guard let rep = render(AppIconArt(), delegate) else { return }
+        rep.size = NSSize(width: 1024, height: 1024)
+        write(rep, to: directory + "/icon_1024.png")
+    }
+}
+
 /// App mark: the menu bar glyph on a deep indigo squircle.
 struct Logo: View {
     let size: CGFloat
